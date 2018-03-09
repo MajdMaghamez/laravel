@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Bree+Serif');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+body
+{
+    background-color:#999;
+    font-family: 'Open Sans', sans-serif;
+}
 .card
 {
     padding:30px 20px;
@@ -57,11 +62,7 @@
 {
     background-color:#fff
 }
-body
-{
-    background-color:#999;
-    font-family: 'Bree Serif', serif;
-}
+
 .padding-left-5
 {
     padding-left: 5px;

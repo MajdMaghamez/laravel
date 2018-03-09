@@ -5,6 +5,25 @@
         <div class="container register">
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-6 col-xl-6">
+
+                @if ( count ( $errors ) > 0 )
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <span>Please correct the errors found below and resubmit again.</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
+
+                @if ( session()->has( 'message' ) )
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <span>{{ session ('message') }}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
+
                     <div class="card">
                         <h4 class="center">Registration</h4><hr/>
                         <form id="form-parsley" method="post" action="{{ route('register') }}" enctype="application/x-www-form-urlencoded">
@@ -14,18 +33,18 @@
                                     <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
                                         <label for="firstname"><span class="red">*</span> First Name</label>
                                         <input type="text" id="firstname" name="firstname" class="form-control" size="40" maxlength="40" value="{{old('firstname')}}"
-                                        data-parsley-trigger="change" data-parsley-maxlength="40" data-parsley-pattern="/^[a-zA-Z0-9 .-]*$/" data-parsley-required="true" />
+                                        data-parsley-trigger="change" data-parsley-maxlength="40" data-parsley-pattern="/^[a-zA-Z .-]*$/" data-parsley-required="true" />
                                     @if($errors->has('firstname'))
-                                        <span class="red"><strong>{{ $errors->first('firstname') }}</strong></span>
+                                        <span class="red">{{ $errors->first('firstname') }}</span>
                                     @endif</div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
                                         <label for="lastname"><span class="red">*</span> Last Name</label>
                                         <input type="text" id="lastname" name="lastname" class="form-control" size="40" maxlength="40" value="{{old('lastname')}}"
-                                        data-parsley-trigger="change" data-parsley-maxlength="40" data-parsley-pattern="/^[a-zA-Z0-9 .-]*$/" data-parsley-required="true" />
+                                        data-parsley-trigger="change" data-parsley-maxlength="40" data-parsley-pattern="/^[a-zA-Z .-]*$/" data-parsley-required="true" />
                                     @if($errors->has('lastname'))
-                                        <span class="red"><strong>{{ $errors->first('lastname') }}</strong></span>
+                                        <span class="red">{{ $errors->first('lastname') }}</span>
                                     @endif</div>
                                 </div>
                             </div>
@@ -36,7 +55,7 @@
                                         <input type="text" id="email" name="email" class="form-control" size="60" maxlength="60" value="{{old('email')}}"
                                         data-parsley-trigger="change" data-parsley-maxlength="60" data-parsley-type="email" data-parsley-required="true"/>
                                     @if($errors->has('email'))
-                                        <span class="red"><strong>{{ $errors->first('email') }}</strong></span>
+                                        <span class="red">{{ $errors->first('email') }}</span>
                                     @endif</div>
                                 </div>
                             </div>
@@ -47,7 +66,7 @@
                                         <input type="password" id="password" name="password" class="form-control" size="40" maxlength="40"
                                         data-parsley-trigger="change" data-parsley-minlength="6" data-parsley-maxlength="40" data-parsley-pattern="/^[a-zA-Z0-9.-_~!@#%^&]+$/" data-parsley-required="true"/>
                                     @if($errors->has('password'))
-                                        <span class="red"><strong>{{ $errors->first('password') }}</strong></span>
+                                        <span class="red">{{ $errors->first('password') }}</span>
                                     @endif</div>
                                 </div>
                                 <div class="col">
@@ -56,7 +75,7 @@
                                         <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" size="40" maxlength="40"
                                         data-parsley-trigger="change" data-parsley-equalto="#password" data-parsley-minlength="6" data-parsley-maxlength="40" data-parsley-pattern="/^[a-zA-Z0-9.-_~!@#%^&]+$/" data-parsley-required="true"/>
                                     @if($errors->has('password_confirmation'))
-                                        <span class="red"><strong>{{ $errors->first('confPassword') }}</strong></span>
+                                        <span class="red">{{ $errors->first('confPassword') }}</span>
                                     @endif</div>
                                 </div>
                             </div>
@@ -73,7 +92,7 @@
                                             <option value="5">What is the name of your favorite teacher?</option>
                                         </select>
                                     @if($errors->has('question1'))
-                                        <span class="red"><strong>{{ $errors->first('question1') }}</strong></span>
+                                        <span class="red">{{ $errors->first('question1') }}</span>
                                     @endif</div>
                                 </div>
                             </div>
@@ -84,7 +103,7 @@
                                         <input type="text" id="answer1" name="answer1" class="form-control" size="60" maxlength="60"
                                         data-parsley-trigger="change" data-parsley-maxlength="60" data-parsley-pattern="/^[a-zA-Z0-9 .-]*$/" data-parsley-required="true"/>
                                     @if($errors->has('answer1'))
-                                        <span class="red"><strong>{{ $errors->first('answer1') }}</strong></span>
+                                        <span class="red">{{ $errors->first('answer1') }}</span>
                                     @endif</div>
                                 </div>
                             </div>
@@ -101,7 +120,7 @@
                                             <option value="5">What is your favorite fruit?</option>
                                         </select>
                                     @if($errors->has('question2'))
-                                        <span class="red"><strong>{{ $errors->first('question2') }}</strong></span>
+                                        <span class="red">{{ $errors->first('question2') }}</span>
                                     @endif</div>
                                 </div>
                             </div>
@@ -112,7 +131,7 @@
                                         <input type="text" id="answer2" name="answer2" class="form-control" size="60" maxlength="60"
                                         data-parsley-trigger="change" data-parsley-maxlength="60" data-parsley-pattern="/^[a-zA-Z0-9 .-]*$/" data-parsley-required="true"/>
                                     @if($errors->has('answer2'))
-                                        <span class="red"><strong>{{ $errors->first('answer2') }}</strong></span>
+                                        <span class="red">{{ $errors->first('answer2') }}</span>
                                     @endif</div>
                                 </div>
                             </div>

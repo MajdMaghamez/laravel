@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -8,7 +8,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link rel="icon" href="{{ 'favicon.png' }}">
         <link rel="stylesheet" href="{{ asset('assets/bootstrap_4.0/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/fontawesome/web/css/fontawesome-all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/parsley/css/parsley.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
         <script src="{{ asset('assets/jQuery/jquery-3.3.1.slim.min.js') }}"></script>
@@ -22,20 +22,24 @@
     </head>
     <body>
         @yield('content')
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <p class="text-muted">{{config('app.company')}} &reg; <?php echo date('Y'); ?> All Rights Reserved.</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
         
         <script src="{{ asset('assets/bootstrap_4.0/js/popper.min.js') }}"></script>
         <script src="{{ asset('assets/bootstrap_4.0/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/jQuery/jquery.countdown.min.js') }}"></script>
         <script src="{{ asset('assets/date/date.js') }}"></script>
         <script src="{{ asset('assets/js/app.js') }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                var timeout = {{config('session.lifetime')}};
+                var expire  = timeout.minutes ( ).fromNow ( );
+                var upto    = expire.toString ('yyyy/MM/dd HH:mm:ss');
+                $('#countdown').countdown ( upto, function ( event ) {
+                    $(this).html ( event.strftime ('%H :%M :%S') );
+                }).on ('finish.countdown', function ( ) {
+                    window.location.replace ( "{{route('logout')}}" );
+                });
+            });
+        </script>
+        @yield('addToFoot')
     </body>
 </html>

@@ -1,23 +1,11 @@
-@extends('layouts.app')
-
+@extends('layouts.bootstrap')
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    @include('layouts.bootstrapNav')
 
-                    You are logged in!
-                </div>
-            </div>
+        <div class="container">
+            <h3>hello world</h3>
         </div>
-    </div>
-</div>
+
+    @include('layouts.bootstrapFooter')
 @endsection

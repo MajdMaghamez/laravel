@@ -16,7 +16,7 @@
                                         <input type="text" id="email" name="email" size="60" maxlength="60" placeholder="" value="{{old('email')}}" class="form-control"
                                         data-parsley-tigger="change" data-parsley-maxlength="60" data-parsley-type="email" data-parsley-required="true" />
                                     @if($errors->has('email'))
-                                        <span class="red"><strong>{{ $errors->first('email') }}</strong></span>
+                                        <span class="red">{{ $errors->first('email') }}</span>
                                     @endif</div>
                                 </div>
                             </div>
@@ -27,7 +27,7 @@
                                         <input type="password" id="password" name="password" size="40" maxlength="40" placeholder="" class="form-control"
                                         data-parsley-trigger="change" data-parsley-maxlength="40" data-parsley-pattern="/^[a-zA-Z0-9.-_~!@#%^&]+$/" data-parsley-required="true" />
                                     @if( $errors->has('password'))
-                                        <span class="red"><strong>{{ $errors->first('password') }}</strong></span>
+                                        <span class="red">{{ $errors->first('password') }}</span>
                                     @endif</div>
                                 </div>
                             </div>
