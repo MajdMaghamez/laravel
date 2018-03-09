@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname', 'lastname', 'email', 'password', 'question1', 'question2', 'answer1', 'answer2'
     ];
 
     /**
@@ -24,6 +24,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating( function ($user){
+            $user->token = str_random(30);
+        });
+    }
 }

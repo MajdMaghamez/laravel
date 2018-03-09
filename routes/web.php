@@ -11,10 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/', function () {
+        return view('welcome');
+    });
 
-Auth::routes();
+    Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/register/confirm/{token}', 'RegisterController@confrimEmail');
+
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/reports', 'ReportsController@index')->name('reports');
+    Route::get('/statistics', 'StatisticsController@index')->name('statistics');
+    Route::get('/help', 'HelpController@index')->name('help');
+
+    Route::get('/userAccount', 'UserController@index')->name('account');
+    Route::get('/userMessages', 'UserController@getMessages')->name('messages');
+
+    Route::get('/devTools', 'DevController@index')->name('devTools');
