@@ -15,22 +15,26 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->tinyInteger('active')->default(1);
+            $table->string('firstname')->collation('utf8_unicode_ci');
+            $table->string('lastname')->collation('utf8_unicode_ci');
+            $table->string('email')->unique()->collation('utf8_unicode_ci');
+            $table->string('password')->collation('utf8_unicode_ci');
+            $table->integer('question1');
+            $table->string('answer1')->collation('utf8_unicode_ci');
+            $table->integer('question2');
+            $table->string('answer2')->collation('utf8_unicode_ci');
+            $table->boolean('active')->default(true);
             $table->tinyInteger('failed')->default(0);
-            $table->tinyInteger('verified')->default(0);
-            $table->string('last_logged_ip')->nullable();
+            $table->boolean('verified')->default(false);
+            $table->string('token')->nullable()->collation('utf8_unicode_ci');
+            $table->string('last_logged_ip')->nullable()->collation('utf8_unicode_ci');
             $table->dateTime('last_logged_in')->nullable();
             $table->integer('created_by')->default(0);
             $table->integer('role')->default(4);
-            $table->tinyInteger('deleted')->default(0);
-            $table->tinyInteger('change_password')->default(0);
-            $table->rememberToken();
+            $table->boolean('deleted')->default(false);
+            $table->boolean('change_password')->default(false);
+            $table->rememberToken()->collation('utf8_unicode_ci');
             $table->timestamps();
-
             $table->engine = 'InnoDB';
         });
     }
